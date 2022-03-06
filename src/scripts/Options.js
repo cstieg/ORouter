@@ -8,9 +8,9 @@ export function setOptions(app, options) {
     app.loader = app.loader || [templateLoader, dataLoader];
     app.scriptLoader = app.scriptLoader || loadScript;
     app.path = app.path || {};
-    app.path.script = app.path.script || "./scripts";
-    app.path.template = app.path.template || "./templates";
-    app.path.data = options.path.data || "/";
+    app.path.script = app.path?.script || "./scripts";
+    app.path.template = app.path?.template || "./templates";
+    app.path.data = options.path?.data || "/";
     app.onLoadError = options.onLoadError || [defaultOnLoadError];
     app.onLoaded = options.onLoaded || [];
     app.fileExtension = options.fileExtension || {};

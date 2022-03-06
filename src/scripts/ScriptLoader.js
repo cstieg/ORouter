@@ -9,16 +9,14 @@ export async function loadScript(app, route) {
     if (!scriptUrl) { return; }
 
     return new Promise((resolve, reject) => {
-        try {
-            import(scriptUrl)
-                .then(scr => {
-                    route.importedScript = scr;
-                    resolve();
-                });
-        }
-        catch (err) {
-            route.importedScript = null;
-            resolve();
-        }
+        import(scriptUrl)
+            .then(scr => {
+                route.importedScript = scr;
+                resolve();
+            })
+            .catch(function (err) {
+                route.importedScript = null;
+                resolve();
+            });
     });
 }

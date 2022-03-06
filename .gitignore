@@ -2,3 +2,4 @@ node_modules/
 .vs/
 build/
 package-lock.json
+test/HashRouter.js
