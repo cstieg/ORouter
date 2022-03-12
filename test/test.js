@@ -8,8 +8,8 @@ const router = new HashRouter({
     ]
 });
 router.addRoutes([
-    { name: "bar", html: "<h1>Hello for bar</h1><a href='#/foo/baz'>Baz</a>", defaultParameters: "a=1&b=2" },
-    { name: "baz", html: "<h1>Hello for baz</h1><a href='#/foo/bar'>Bar</a>" },
+    { name: "bar", html: "<h1>Hello for bar</h1><a href='/foo/baz'>Baz</a>", defaultParameters: "a=1&b=2", script: "" },
+    { name: "baz", html: "<h1>Hello for baz</h1><a href='/foo/bar'>Bar</a>", script: "" },
 ], { namespace: "foo" });
 router.init();
 

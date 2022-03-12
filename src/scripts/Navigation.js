@@ -1,29 +1,56 @@
 export function init() {
     const app = this;
     window.onhashchange = navigate;
+    window.onpopstate = navigate;
+    document.addEventListener("click", function (e) {
+        if (e.target.tagName.toLowerCase() !== "a") { return; }
+        navigateToHref(e);
+    });
     navigate();
     return app;
 
     async function navigate() {
-        if (!location.hash) { return; }
-        const hash = location.hash.slice(1);
-        const hashUrl = new URL(hash, location.origin);
-        const routeName = hashUrl.pathname.toLowerCase();
-        const route = app.routes[routeName];
-
-        if (!route) { throw "Cannot find route " + routeName; }
-
-        setParameters(route, hashUrl.searchParams);
-        updateHash(hashUrl);
-
-        const scriptLoader = route.scriptLoader || app.scriptLoader;
-        await scriptLoader(app, route);
-
-        if (!beforeLoadEvent(app, route)) { return; }
-
-        await load(app, route);
-        await render(app, route);
+        await navigateToUrl(app, location.href);
     }
+
+    async function navigateToHref(e) {
+        history.pushState({}, null, e.target.href);
+        e.preventDefault();
+        navigateToUrl(app, e.target.href);
+    }
+}
+
+async function navigateToUrl(app, url) {
+    if (!app) { throw "Must pass app"; }
+    if (typeof url !== "string") { throw "Url must be string"; }
+
+    if (!url.toLowerCase().startsWith(app.baseUrl.toLowerCase())) {
+        console.log("Leaving site");
+        return;
+    }
+
+    const routeDifference = url.slice(app.baseUrl.length);
+    const indexOfQuery = routeDifference.indexOf("?");
+    const sliceEnd = indexOfQuery === -1 ? routeDifference.length : indexOfQuery;
+    const routeName = routeDifference.slice(0, sliceEnd);
+
+    const route = app.routes[routeName];
+    if (!route) { throw "Cannot find route " + routeName; }
+
+    const searchParams = indexOfQuery === -1 ? new URLSearchParams()
+        : new URLSearchParams(routeDifference.substring(indexOfQuery));
+    setParameters(route, searchParams);
+    await navigateToRoute(app, route);
+}
+
+async function navigateToRoute(app, route) {
+    const scriptLoader = route.scriptLoader || app.scriptLoader;
+    await scriptLoader(app, route);
+
+    if (!beforeLoadEvent(app, route)) { return; }
+
+    await load(app, route);
+    await render(app, route);
 }
 
 function setParameters(route, searchParams) {

@@ -4,6 +4,7 @@ import { templateLoader, dataLoader } from './Loader.js';
 export function setOptions(app, options) {
     Object.assign(app, options);
 
+    app.baseUrl = app.baseUrl ?? window.location.origin;
     app.routes = app.routes || {};
     app.loader = app.loader || [templateLoader, dataLoader];
     app.scriptLoader = app.scriptLoader || loadScript;
