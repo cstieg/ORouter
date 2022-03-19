@@ -3,9 +3,7 @@ import { HashRouter } from "./HashRouter.js";
 const router = new HashRouter({
     root: "app",
     loader: [],
-    render: [
-        renderTemplate
-    ]
+    render: [HashRouter.renderers.htmlRenderer]
 });
 router.addRoutes([
     { name: "bar", html: "<h1>Hello for bar</h1><a href='/foo/baz'>Baz</a>", defaultParameters: "a=1&b=2", script: "" },
