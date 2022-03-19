@@ -29,11 +29,14 @@ export function setOptionsForRoutes(routes, options) {
 }
 
 function setRootElement(app) {
-    if (app.root === undefined) {
+    if (!app.root) {
         app.root = document.getElementById("app-root");
     }
     else if (typeof (app.root) === "string") {
         app.root = document.getElementById(app.root);
+    }
+    else if (!(app.root instanceof HTMLElement)) {
+        throw "Option 'root' must either be HTMLElement or string id of HTML element";
     }
 }
 
