@@ -1,6 +1,6 @@
 {
   "name": "hash-router",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Simple SPA routing",
   "main": "build/HashRouter.js",
   "author": "Christopher Stieg <cbstieg@gmail.com>",
@@ -10,6 +10,6 @@
   },
   "dependencies": {},
   "scripts": {
-    "dev": "npx rollup -c"
+    "dev": "rollup -c"
   }
 }
