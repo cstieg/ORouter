@@ -1,12 +1,11 @@
 import { loadScript } from "./ScriptLoader.js";
-import { templateLoader, dataLoader } from './Loader.js';
 
 export function setOptions(app, options) {
     Object.assign(app, options);
 
     app.baseUrl = app.baseUrl ?? window.location.origin;
     app.routes = app.routes || {};
-    app.loader = app.loader || [templateLoader, dataLoader];
+    app.loader = app.loader || [HashRouter.templateLoader, HashRouter.dataLoader];
     app.scriptLoader = app.scriptLoader || loadScript;
     app.path = app.path || {};
     app.path.script = app.path?.script || "./scripts";
