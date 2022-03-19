@@ -91,7 +91,7 @@ async function load(app, route) {
     const loaders = Array.isArray(loader) ? loader
         : typeof loader === "function" ? [loader]
             : null;
-    if (!loaders) { return Promise.resolve(); }
+    if (!loaders || !loaders.length) { return Promise.resolve(); }
 
     try {
         await loadGroups(app, route, loaders);
