@@ -1,4 +1,4 @@
-import { loadScript } from "./ScriptLoader.js";
+import { loadScript } from "./Loaders/ScriptLoader.js";
 
 export function setOptions(app, options) {
     Object.assign(app, options);

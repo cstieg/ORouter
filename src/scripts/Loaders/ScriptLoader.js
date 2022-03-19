@@ -1,4 +1,4 @@
-import { getFileName, getUrl } from "./FileName.js";
+import { getFileName, getUrl } from "../FileName.js";
 
 export async function loadScript(app, route) {
     if (route.script === "" || route.script === null) { return; }
