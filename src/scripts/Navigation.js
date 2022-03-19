@@ -67,15 +67,3 @@ function setParameters(route, searchParams) {
         searchParams.append(defaultSearchParam[0], defaultSearchParam[1]);
     }
 }
-
-function updateHash(hashUrl) {
-    const updatedHash = hashUrl.pathname + hashUrl.search;
-    replaceHash(updatedHash);
-}
-
-function replaceHash(hash) {
-    const newUrl = new URL(window.location);
-    newUrl.hash = hash;
-    history.replaceState(null, null, newUrl.toString());
-}
-
