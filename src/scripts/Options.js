@@ -11,10 +11,10 @@ export function setOptions(app, options) {
     app.path.script = app.path?.script || "./scripts";
     app.path.template = app.path?.template || "./templates";
     app.path.data = options.path?.data || "/";
-    app.onLoadError = options.onLoadError || [defaultOnLoadError];
-    app.onLoaded = options.onLoaded || [];
     app.fileExtension = options.fileExtension || {};
     app.fileExtension.script = app.fileExtension.script || ".js";
+    app.onLoaded = options.onLoaded || [];
+    app.onLoadError = options.onLoadError || [defaultOnLoadError];
 
     setRootElement(app);
 }
@@ -63,6 +63,6 @@ function coalesceRecursive(target, source) {
     return target;
 }
 
-function defaultOnLoadError() {
-    throw "Error loading";
+function defaultOnLoadError(e) {
+    throw "Error loading: " + e;
 }

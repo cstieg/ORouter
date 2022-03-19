@@ -96,11 +96,11 @@ async function load(app, route) {
     try {
         await loadGroups(app, route, loaders);
     }
-    catch {
+    catch(e) {
         const onLoadError = route.onLoadError || app.onLoadError;
         if (!Array.isArray(onLoadError)) { throw "Unable to load; onLoadError must be array"; }
         for (const doOnLoadError of onLoadError) {
-            doOnLoadError(app, route);
+            doOnLoadError(e, app, route);
         }
         throw "Unable to load";
     }
@@ -194,11 +194,11 @@ async function render(app, route) {
             renderer(app, route);
         }
     }
-    catch {
+    catch(e) {
         const onRenderError = route.onRenderError || app.onRenderError;
         if (!Array.isArray(onRenderError)) { throw "Unable to render; onRenderError must be array"; }
         for (const doOnRenderError of onRenderError) {
-            doOnRenderError(app, route);
+            doOnRenderError(e, app, route);
         }
         throw "Unable to render";
     }
