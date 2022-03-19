@@ -13,6 +13,7 @@ export function setOptions(app, options) {
     app.path.data = options.path?.data || "/";
     app.fileExtension = options.fileExtension || {};
     app.fileExtension.script = app.fileExtension.script || ".js";
+    app.fileExtension.html = app.fileExtension.html || ".html";
     app.onLoaded = options.onLoaded || [];
     app.onLoadError = options.onLoadError || [defaultOnLoadError];
 
