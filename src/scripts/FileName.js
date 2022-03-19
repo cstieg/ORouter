@@ -33,11 +33,14 @@ export function getUrl(app, route, fileType, fileName) {
 }
 
 export function joinPath() {
+    if (arguments.length === 0) { throw "Must pass arguments to joinPath"; }
     for (const argument in arguments) {
         if (typeof argument !== "string") { throw "Arguments must be strings" }; 
     }
     const argumentArray = [...arguments];
-    return argumentArray
+    const startsWithSlash = arguments[0].startsWith("/");
+    return (startsWithSlash ? "/" : "")
+        + argumentArray
         .join("/")
         .split(pathSlashRegex)
         .filter(el => el)
