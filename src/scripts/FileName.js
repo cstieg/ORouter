@@ -24,12 +24,15 @@ export function getUrl(app, route, fileType, fileName) {
         ? ""
         : getAppPath(app, fileType);
 
-    // Relative paths starting with / do not need to be namespaced
-    const namespace = fileName.startsWith("/")
-        ? ""
-        : route.namespace;
+    const replacedAppPath = replaceVariables(appPath, route.namespace, fileName);
+    return joinPath(replacedAppPath);
+}
 
-    return joinPath(appPath, namespace, fileName);
+function replaceVariables(appPath, namespace, fileName) {
+    return appPath
+        .toLowerCase()
+        .replace("*namespace*", namespace)
+        .replace("*filename*", fileName);
 }
 
 export function joinPath() {
