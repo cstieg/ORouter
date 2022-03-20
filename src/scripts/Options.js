@@ -1,3 +1,5 @@
+import coalesce from "./Helpers/Coalesce.js";
+
 export function setOptions(app, options) {
     Object.assign(app, options);
 
@@ -22,10 +24,7 @@ export function setOptions(app, options) {
 }
 
 function setDefault(obj, prop, defaultValue) {
-    const existingValue = obj[prop];
-    if (existingValue === undefined) {
-        obj[prop] = defaultValue;
-    }
+    obj[prop] = coalesce(obj[prop], defaultValue);
 }
 
 export function setOptionsForRoutes(routes, options) {

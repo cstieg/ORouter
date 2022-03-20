@@ -1,5 +1,6 @@
 import { beforeLoadEvent, load } from "./Load.js";
 import { render } from "./Render.js";
+import coalesce from "./Helpers/Coalesce.js";
 
 export function init() {
     const app = this;
@@ -47,7 +48,7 @@ async function navigateToUrl(app, url) {
 }
 
 async function navigateToRoute(app, route) {
-    const scriptLoader = route.scriptLoader || app.scriptLoader;
+    const scriptLoader = coalesce(route.scriptLoader, app.scriptLoader);
     if (typeof scriptLoader === "function") {
         await scriptLoader(app, route);
     }
