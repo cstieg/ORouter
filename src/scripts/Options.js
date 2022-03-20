@@ -1,23 +1,31 @@
-import { loadScript } from "./Loaders/ScriptLoader.js";
-
 export function setOptions(app, options) {
     Object.assign(app, options);
 
-    app.baseUrl = app.baseUrl ?? window.location.origin;
-    app.routes = app.routes || {};
-    app.loader = app.loader || [HashRouter.templateLoader, HashRouter.dataLoader];
-    app.scriptLoader = app.scriptLoader || loadScript;
-    app.path = app.path || {};
-    app.path.script = app.path?.script || "./scripts";
-    app.path.template = app.path?.template || "./templates";
-    app.path.data = options.path?.data || "/";
-    app.fileExtension = options.fileExtension || {};
-    app.fileExtension.script = app.fileExtension.script || ".js";
-    app.fileExtension.html = app.fileExtension.html || ".html";
-    app.onLoaded = options.onLoaded || [];
-    app.onLoadError = options.onLoadError || [defaultOnLoadError];
+    setDefault(app, "baseUrl", window.location.origin);
+    setDefault(app, "routes", {});
+    setDefault(app, "loader", [app.constructor.loaders.templateLoader, app.constructor.loaders.dataLoader]);
+    setDefault(app, "scriptLoader", app.constructor.loaders.scriptLoader);
+    setDefault(app, "path", {});
+    setDefault(app.path, "script", "./scripts");
+    setDefault(app.path, "template", "./templates");
+    setDefault(app.path, "data", "/");
+    setDefault(app.path, "html", "./html");
+    setDefault(app, "fileExtension", {});
+    setDefault(app.fileExtension, "script", ".js");
+    setDefault(app.fileExtension, "html", ".html");
+    setDefault(app, "onLoaded", []);
+    setDefault(app, "onLoadError", [defaultOnLoadError]);
+    setDefault(app, "onRendered", []);
+    setDefault(app, "onRenderError", []);
 
     setRootElement(app);
+}
+
+function setDefault(obj, prop, defaultValue) {
+    const existingValue = obj[prop];
+    if (existingValue === undefined) {
+        obj[prop] = defaultValue;
+    }
 }
 
 export function setOptionsForRoutes(routes, options) {

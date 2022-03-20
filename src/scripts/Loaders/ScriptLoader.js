@@ -1,6 +1,6 @@
 import { getFileName, getUrl } from "../FileName.js";
 
-export async function loadScript(app, route) {
+export default async function scriptLoader(app, route) {
     if (route.script === "" || route.script === null) { return; }
     if (route.importedScript) { return; }
 

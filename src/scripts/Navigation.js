@@ -48,7 +48,9 @@ async function navigateToUrl(app, url) {
 
 async function navigateToRoute(app, route) {
     const scriptLoader = route.scriptLoader || app.scriptLoader;
-    await scriptLoader(app, route);
+    if (typeof scriptLoader === "function") {
+        await scriptLoader(app, route);
+    }
 
     if (!beforeLoadEvent(app, route)) { return; }
 
