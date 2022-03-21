@@ -1,5 +1,6 @@
-import { beforeLoadEvent, load } from "./Load.js";
-import { render } from "./Render.js";
+import load from "./Load.js";
+import render from "./Render.js";
+import beforeLoadEvent from "./Events/BeforeLoadEvent.js";
 import coalesce from "./Helpers/Coalesce.js";
 
 export function init() {

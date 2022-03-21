@@ -1,5 +1,9 @@
-export async function render(app, route) {
-    const renderer = route.render || app.render;
+import coalesce from "./Helpers/Coalesce.js";
+import onRenderedGlobalEvent from "./Events/OnRenderedGlobalEvent.js";
+import onRenderedEvent from "./Events/OnRenderedEvent.js";
+
+export default async function render(app, route) {
+    const renderer = coalesce(route.renderer, app.renderer);
     const renderers = Array.isArray(renderer) ? renderer
         : typeof renderer === "function" ? [renderer]
             : null;
@@ -11,7 +15,7 @@ export async function render(app, route) {
         }
     }
     catch (e) {
-        const onRenderError = route.onRenderError || app.onRenderError;
+        const onRenderError = coalesce(route.onRenderError, app.onRenderError);
         if (!Array.isArray(onRenderError)) { throw "Unable to render; onRenderError must be array"; }
         for (const doOnRenderError of onRenderError) {
             doOnRenderError(e, app, route);
@@ -23,20 +27,4 @@ export async function render(app, route) {
     onRenderedEvent(app, route);
 
     return Promise.resolve();
-}
-
-function onRenderedGlobalEvent(app, route) {
-    if (app.onRendered) {
-        if (!Array.isArray(app.onRendered)) { throw "onRendered must be array"; }
-        for (const doOnRendered of app.onRendered) {
-            doOnRendered(app, route);
-        }
-    }
-}
-
-function onRenderedEvent(app, route) {
-    if (route.importedScript && route.importedScript.onRendered) {
-        if (typeof route.importedScript.onRendered !== "function") { throw "onRendered must be function"; }
-        route.importedScript.onRendered(route, app);
-    }
 }
