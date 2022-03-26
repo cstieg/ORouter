@@ -1,8 +1,8 @@
 {
-  "name": "hash-router",
+  "name": "occams-router",
   "version": "1.0.0",
   "description": "Simple SPA routing",
-  "main": "build/HashRouter.js",
+  "main": "build/Router.js",
   "author": "Christopher Stieg <cbstieg@gmail.com>",
   "devDependencies": {
     "rollup": "^2.50.4",

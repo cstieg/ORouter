@@ -4,12 +4,17 @@ import { init } from './Navigation.js';
 import { populateRenderers } from './Renderers.js';
 import populateLoaders from './Loaders.js';
 
-export function HashRouter(options) {
+/**
+ * Router constructor
+ * @constructor
+ * @param {object} [options]  Options object
+ */
+export function Router(options) {
     const app = this;
     setOptions(app, options);
     app.addRoutes = addRoutes.bind(app);
     app.init = init.bind(app);
 }
 
-populateLoaders(HashRouter);
-populateRenderers(HashRouter);
+populateLoaders(Router);
+populateRenderers(Router);

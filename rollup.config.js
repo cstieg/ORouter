@@ -4,16 +4,16 @@ export default {
     input: 'src/scripts/main.js',
     output: [
         {
-            file: 'build/js/HashRouter.min.js',
-            name: 'HashRouter',
+            file: 'build/js/Router.min.js',
+            name: 'Router',
             format: 'iife',
             plugins: [
                 uglify()
             ]
         },
         {
-            file: 'test/HashRouter.js',
-            name: 'HashRouter'
+            file: 'test/Router.js',
+            name: 'Router'
         }
     ]
 };

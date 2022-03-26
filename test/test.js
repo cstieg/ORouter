@@ -1,18 +1,11 @@
-import { HashRouter } from "./HashRouter.js";
+import { Router } from "./Router.js";
 
-const router = new HashRouter({
-    root: "app",
-    loader: [],
-    render: [HashRouter.renderers.htmlRenderer]
+const router = new Router({
+    root: "app"
 });
+
 router.addRoutes([
-    { name: "bar", html: "<h1>Hello for bar</h1><a href='/foo/baz'>Baz</a>", defaultParameters: "a=1&b=2", script: "" },
-    { name: "baz", html: "<h1>Hello for baz</h1><a href='/foo/bar'>Bar</a>", script: "" },
+    { name: "bar", defaultParameters: "a=1&b=2", script: null },
+    { name: "baz", loadedHtml: "<h1>Hello for baz</h1><a href='/foo/bar'>Bar</a>", script: null },
 ], { namespace: "foo" });
 router.init();
-
-
-function renderTemplate(app, route) {
-    const element = document.getElementById("app");
-    element.innerHTML = route.html;
-}
