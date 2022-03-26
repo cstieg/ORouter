@@ -19,7 +19,7 @@ export default async function load(app, route) {
         for (const doOnLoadError of onLoadError) {
             doOnLoadError(e, app, route);
         }
-        throw "Unable to load";
+        return Promise.reject();
     }
 
     onLoadedGlobalEvent(app, route);

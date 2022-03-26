@@ -20,7 +20,7 @@ export default async function render(app, route) {
         for (const doOnRenderError of onRenderError) {
             doOnRenderError(e, app, route);
         }
-        throw "Unable to render";
+        return Promise.reject();
     }
 
     onRenderedGlobalEvent(app, route);
