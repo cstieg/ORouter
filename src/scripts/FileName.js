@@ -32,7 +32,7 @@ function replaceVariables(appPath, namespace, fileName) {
     return appPath
         .toLowerCase()
         .replace("*namespace*", namespace)
-        .replace("*filename*", fileName);
+        .replace("*name*", fileName);
 }
 
 export function joinPath() {
@@ -52,7 +52,6 @@ export function joinPath() {
 }
 
 function getAppPath(app, fileType) {
-    let appPath = app.path[fileType];
-    if (!appPath) { throw "Must set app.path." + fileType + " in order to use relative path"; }
-    return appPath;
+    return app.path[fileType]
+        ?? "/static/*namespace*/*name*";
 }

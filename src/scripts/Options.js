@@ -10,19 +10,15 @@ export function setOptions(app, options) {
 
     setDefault(app, "routes", {});
 
-    setDefault(app, "loader", [app.constructor.loaders.templateLoader, app.constructor.loaders.dataLoader]);
+    setDefault(app, "loader", [app.constructor.loaders.htmlLoader]);
     setDefault(app, "scriptLoader", app.constructor.loaders.scriptLoader);
     setDefault(app, "renderer", [app.constructor.renderers.htmlRenderer]);
 
-    // Paths
     setDefault(app, "path", {});
-    setDefault(app.path, "script", "./scripts");
-    setDefault(app.path, "template", "./templates");
-    setDefault(app.path, "data", "/");
-    setDefault(app.path, "html", "./html");
 
     // File extensions
     setDefault(app, "fileExtension", {});
+    setDefault(app.fileExtension, "css", ".css");
     setDefault(app.fileExtension, "script", ".js");
     setDefault(app.fileExtension, "html", ".html");
 
