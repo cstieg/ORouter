@@ -1,6 +1,6 @@
 import { htmlRenderer } from "./Renderers/HtmlRenderer.js";
 
-export function populateRenderers(HashRouter) {
+export default function populateRenderers(HashRouter) {
     HashRouter.renderers = {
         htmlRenderer
     };

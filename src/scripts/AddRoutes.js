@@ -1,7 +1,7 @@
 import { setOptionsForRoutes } from "./Options.js";
 import { joinPath } from "./FileName.js";
 
-export function addRoutes(routes, options) {
+export default function addRoutes(routes, options) {
     const app = this;
 
     setOptionsForRoutes(routes, options);
