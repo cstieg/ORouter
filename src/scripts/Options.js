@@ -1,5 +1,5 @@
 import coalesce from "./Helpers/Coalesce.js";
-import coalesceRecursive from "./Helpers/CoalescerRecursive.js";
+import coalesceRecursive from "./Helpers/CoalesceRecursive.js";
 import defaultOnLoadError from "./ErrorHandlers/DefaultOnLoadError.js";
 import defaultOnRenderError from "./ErrorHandlers/DefaultOnRenderError.js";
 
