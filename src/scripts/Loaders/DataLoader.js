@@ -12,8 +12,11 @@ export default function dataLoader(app, route) {
             return;
         }
 
-        const url = new URL(getUrl(app, route, "data", dataName));
-        url.search = route.parameters;
+        const urlString = getUrl(app, route, "data", dataName);
+        const url = new URL(urlString);
+        if (route.parameters) {
+            url.search = route.parameters;
+        }
 
         fetch(url).then(async function (response) {
             if (response.ok) {
