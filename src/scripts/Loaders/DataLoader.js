@@ -18,7 +18,7 @@ export default function dataLoader(app, route) {
             url.search = route.parameters;
         }
 
-        fetch(url).then(async function (response) {
+        fetch(url.toString()).then(async function (response) {
             if (response.ok) {
                 route.loadedData = await response.json();
                 resolve();

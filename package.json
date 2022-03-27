@@ -5,11 +5,15 @@
   "main": "build/Router.js",
   "author": "Christopher Stieg <cbstieg@gmail.com>",
   "devDependencies": {
+    "jasmine": "^4.0.2",
+    "jasmine-core": "^4.0.1",
     "rollup": "^2.50.4",
     "rollup-plugin-uglify": "^6.0.4"
   },
   "dependencies": {},
   "scripts": {
-    "dev": "rollup -c"
-  }
+    "dev": "jasmine && rollup -c",
+    "test": "jasmine"
+  },
+  "type": "module"
 }
