@@ -1,7 +1,7 @@
 import htmlRenderer from "../../src/scripts/Renderers/HtmlRenderer.js";
 
 describe("htmlRenderer", () => {
-    it("loads html from the specified path", async () => {
+    it("renderers html in the app.root", async () => {
         const app = getApp();
         const route = getRoute();
         await htmlRenderer(app, route);

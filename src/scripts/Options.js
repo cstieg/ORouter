@@ -8,6 +8,7 @@ export function setOptions(app, options) {
 
     setDefault(app, "baseUrl", globalThis.location.origin);
 
+    // TODO: Allow setting routes on constructor
     setDefault(app, "routes", {});
 
     setDefault(app, "loader", [app.constructor.loaders?.htmlLoader]);

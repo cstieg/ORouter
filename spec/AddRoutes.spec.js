@@ -17,10 +17,12 @@ describe("addRoutes", () => {
         };
         const expectedAppRoutes = {
             "/foo/bar": {
+                id: "/foo/bar",
                 name: "bar",
                 namespace: "foo"
             },
             "/foo/baz": {
+                id: "/foo/baz",
                 name: "baz",
                 namespace: "foo"
             }

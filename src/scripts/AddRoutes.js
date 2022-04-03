@@ -13,6 +13,7 @@ export default function addRoutes(routes, options) {
         const existingRoute = routes[namespacedRouteName];
         if (existingRoute) { throw "Route must be unique: " + namespacedRouteName; }
 
+        route.id = namespacedRouteName;
         app.routes[namespacedRouteName] = route;
     }
 

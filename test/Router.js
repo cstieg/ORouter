@@ -44,6 +44,7 @@ function setOptions(app, options) {
 
     setDefault(app, "baseUrl", globalThis.location.origin);
 
+    // TODO: Allow setting routes on constructor
     setDefault(app, "routes", {});
 
     setDefault(app, "loader", [app.constructor.loaders?.htmlLoader]);
@@ -124,6 +125,7 @@ function addRoutes(routes, options) {
         const existingRoute = routes[namespacedRouteName];
         if (existingRoute) { throw "Route must be unique: " + namespacedRouteName; }
 
+        route.id = namespacedRouteName;
         app.routes[namespacedRouteName] = route;
     }
 
@@ -249,6 +251,9 @@ async function render(app, route) {
     if (!renderers) { return Promise.resolve(); }
 
     try {
+        if (app.root) {
+            app.root.setAttribute("data-currentRouteId", route.id);
+        }
         for (const renderer of renderers) {
             renderer(app, route);
         }
@@ -354,6 +359,7 @@ function htmlRenderer(app, route) {
 
 function populateRenderers(HashRouter) {
     HashRouter.renderers = {
+        cssRenderer,
         htmlRenderer
     };
 }

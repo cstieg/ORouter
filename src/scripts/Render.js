@@ -10,6 +10,9 @@ export default async function render(app, route) {
     if (!renderers) { return Promise.resolve(); }
 
     try {
+        if (app.root) {
+            app.root.setAttribute("data-currentRouteId", route.id);
+        }
         for (const renderer of renderers) {
             renderer(app, route);
         }
