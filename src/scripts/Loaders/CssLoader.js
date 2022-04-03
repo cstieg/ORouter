@@ -23,7 +23,7 @@ export default function cssLoader(app, route) {
                 }
                 else {
                     route.loadedCss = null;
-                    reject();
+                    reject(`${url} not found`);
                 }
             });
     });

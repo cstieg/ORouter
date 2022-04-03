@@ -1,6 +1,6 @@
 export default function cssRenderer(app, route) {
     if (!route.loadedCss) { return; }
-    const scopedCss = addScopeToCss(route.loadedCss, `[name=data-currentRouteId][value="${route.id}"]`);
+    const scopedCss = addScopeToCss(route.loadedCss, `[data-currentrouteid="${route.id}"]`);
     document.head.insertAdjacentHTML("beforeend", `<style>${scopedCss}</style>`)
 }
 

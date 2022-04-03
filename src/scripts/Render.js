@@ -11,7 +11,7 @@ export default async function render(app, route) {
 
     try {
         if (app.root) {
-            app.root.setAttribute("data-currentRouteId", route.id);
+            app.root.setAttribute("data-currentrouteid", route.id);
         }
         for (const renderer of renderers) {
             renderer(app, route);

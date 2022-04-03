@@ -17,6 +17,6 @@ describe("cssRenderer", () => {
         spyOn(globalThis.document.head, "insertAdjacentHTML");
 
         await cssRenderer(app, route);
-        expect(document.head.insertAdjacentHTML).toHaveBeenCalledWith("beforeend", `<style>[name=data-currentRouteId][value="/foo/bar"] a { color: black; }</style>`);
+        expect(document.head.insertAdjacentHTML).toHaveBeenCalledWith("beforeend", `<style>[data-currentrouteid="/foo/bar"] a { color: black; }</style>`);
     });
 });
