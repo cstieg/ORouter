@@ -411,6 +411,34 @@ function getAppPath(app, fileType) {
         ?? app.defaultPath;
 }
 
+cssLoader.IsBlocking = false;
+
+function cssLoader(app, route) {
+    return new Promise((resolve, reject) => {
+        if (route.loadedCss !== undefined) { resolve(); }
+
+        const cssName = getFileName(app, route, "css");
+        if (!cssName) {
+            resolve();
+            return;
+        }
+
+        const url = getUrl(app, route, "css", cssName);
+
+        fetch(url)
+            .then(async function (response) {
+                if (response.ok) {
+                    route.loadedCss = await response.text();
+                    resolve();
+                }
+                else {
+                    route.loadedCss = null;
+                    reject();
+                }
+            });
+    });
+}
+
 dataLoader.IsBlocking = false;
 
 function dataLoader(app, route) {
@@ -520,6 +548,7 @@ async function scriptLoader(app, route) {
 
 function populateLoaders(HashRouter) {
     HashRouter.loaders = {
+        cssLoader,
         dataLoader,
         htmlLoader,
         templateLoader,
