@@ -1,6 +1,6 @@
 import coalesceRecursive from "../../src/scripts/Helpers/CoalesceRecursive.js";
 
-describe("CoalesceRecursive", () => {
+describe("coalesceRecursive", () => {
     const dataSets = [
         {
             a: {

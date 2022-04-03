@@ -1,4 +1,5 @@
-import { getFileName, getUrl } from "../FileName.js";
+import getFileName from "../GetFileName.js";
+import getUrl from "../GetUrl.js";
 
 htmlLoader.IsBlocking = false;
 

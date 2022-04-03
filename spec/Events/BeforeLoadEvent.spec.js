@@ -1,6 +1,6 @@
 import beforeLoadEvent from "../../src/scripts/Events/BeforeLoadEvent.js";
 
-describe("BeforeLoadEvent", () => {
+describe("beforeLoadEvent", () => {
     it("returns true if there is no importedScript", () => {
         const app = {};
         const route = {};

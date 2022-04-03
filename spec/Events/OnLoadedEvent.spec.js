@@ -1,6 +1,6 @@
 import onLoadedEvent from "../../src/scripts/Events/OnLoadedEvent.js";
 
-describe("OnLoadedEvent", () => {
+describe("onLoadedEvent", () => {
     it("calls importedScript.onLoaded", () => {
         const app = {};
         const route = {

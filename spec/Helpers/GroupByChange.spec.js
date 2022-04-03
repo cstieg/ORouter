@@ -1,6 +1,6 @@
 import groupByChange from "../../src/scripts/Helpers/GroupByChange.js";
 
-describe("GroupByChange", () => {
+describe("groupByChange", () => {
     it("Splits an array of objects into array of arrays.  When a specified property of the object is different from the previous, a new group is started.", () => {
         const objects = [
             { prop: true },

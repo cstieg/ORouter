@@ -1,6 +1,6 @@
 import onLoadedGlobalEvent from "../../src/scripts/Events/OnLoadedGlobalEvent.js";
 
-describe("OnLoadedGlobalEvent", () => {
+describe("onLoadedGlobalEvent", () => {
     it("calls functions in app.onLoaded array", () => {
         const functions = {
             onLoaded1: function () { },

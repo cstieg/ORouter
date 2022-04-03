@@ -1,6 +1,6 @@
 import groupByChange from "../../src/scripts/Helpers/Coalesce.js";
 
-describe("Coalesce", () => {
+describe("coalesce", () => {
     const dataSets = [
         { a: 1, b: 2, result: 1 },
         { a: undefined, b: 2, result: 2 },

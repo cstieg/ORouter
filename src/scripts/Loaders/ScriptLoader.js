@@ -1,4 +1,5 @@
-import { getFileName, getUrl } from "../FileName.js";
+import getFileName from "../GetFileName.js";
+import getUrl from "../GetUrl.js";
 
 export default async function scriptLoader(app, route) {
     if (route.script === "" || route.script === null) { return; }

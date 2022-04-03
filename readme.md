@@ -100,11 +100,11 @@ router.root = "app";
     * Default: `constructor.loaders.scriptLoader`
   * `loader`
     * Type: function | function[]
-    * Description: Loader or array of loaders that load template, data, etc., before render
+    * Description: Loader or array of loaders that load template, data, etc., before render.  Loader should return Promise.
     * Default: `[constructor.loaders.htmlLoader]`
   * `renderer`
     * Type: function | function[]
-    * Description: Renderer or array of renderers that render html, template, data, etc.
+    * Description: Renderer or array of renderers that render html, template, data, etc.  Renderer should return Promise.
     * Default: `[constructor.renderers.htmlRenderer]`
 * **Events**
   * `onLoaded`: Executes after all loading is complete
@@ -160,9 +160,9 @@ router.root = "app";
     * Description: The script imported by `scriptLoader`.
   * `loader`
     * Type: function | function[]
-    * Description: Loader or array of loaders that load template, data, etc., before render
+    * Description: Loader or array of loaders that load template, data, etc., before render.  Loader should return Promise.
     * Overrides app option
   * `render`
     * Type: function | function[]
-    * Description: Renderer or array of renderers that render html, template, data, etc.
+    * Description: Renderer or array of renderers that render html, template, data, etc. Loader should return Promise.
     * Overrides app option

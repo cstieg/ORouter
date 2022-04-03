@@ -28,6 +28,9 @@ export default async function load(app, route) {
 }
 
 async function loadGroups(app, route, loaders) {
+    for (const loader of loaders) {
+        loader.IsBlocking = loader.IsBlocking ?? false;
+    }
     const groups = groupByChange(loaders, "IsBlocking");
     for (const group of groups) {
         if (group[0].IsBlocking) {
@@ -40,17 +43,16 @@ async function loadGroups(app, route, loaders) {
     return Promise.resolve();
 }
 
-function loadBlocking(group, app, route) {
-    if (!group || !group.length) { return Promise.resolve(); }
-    let chainedPromise = group[0];
-    for (let i = 1; i < group.length; i++) {
-        const loader = group[i];
+function loadBlocking(loaders, app, route) {
+    if (!loaders || !loaders.length) { return Promise.resolve(); }
+    let chainedPromise = Promise.resolve();
+    for (const loader of loaders) {
         chainedPromise = chainedPromise.then(() => loader(app, route));
     }
     return chainedPromise;
 }
 
-function loadParallel(group, app, route) {
-    const loadPromises = group.map(loader => loader(app, route));
+function loadParallel(loaders, app, route) {
+    const loadPromises = loaders.map(loader => loader(app, route));
     return Promise.all(loadPromises);
 }

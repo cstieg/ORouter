@@ -6,15 +6,16 @@ import defaultOnRenderError from "./ErrorHandlers/DefaultOnRenderError.js";
 export function setOptions(app, options) {
     Object.assign(app, options);
 
-    setDefault(app, "baseUrl", window.location.origin);
+    setDefault(app, "baseUrl", globalThis.location.origin);
 
     setDefault(app, "routes", {});
 
-    setDefault(app, "loader", [app.constructor.loaders.htmlLoader]);
-    setDefault(app, "scriptLoader", app.constructor.loaders.scriptLoader);
-    setDefault(app, "renderer", [app.constructor.renderers.htmlRenderer]);
+    setDefault(app, "loader", [app.constructor.loaders?.htmlLoader]);
+    setDefault(app, "scriptLoader", app.constructor.loaders?.scriptLoader);
+    setDefault(app, "renderer", [app.constructor.renderers?.htmlRenderer]);
 
     setDefault(app, "path", {});
+    setDefault(app, "defaultPath", "/static/*namespace*/*name*");
 
     // File extensions
     setDefault(app, "fileExtension", {});
