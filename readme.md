@@ -108,7 +108,7 @@ router.root = "app";
     * Default: `[constructor.renderers.htmlRenderer]`
 * **Events**
   * `onLoaded`: Executes after all loading is complete
-  * `onLoadError`: Executes when an exception is thrown while loading
+  * `onLoadError`: Executes when an exception is thrown while loading.  `function(e, app, route, loader)`
   * `onRendered`: Executes after all rendering is complete
   * `onRenderError`: Executes when an exception is thrown while rendering
 * **Methods**

@@ -11,9 +11,9 @@ import populateLoaders from './Loaders.js';
  */
 export function Router(options) {
     const app = this;
-    setOptions(app, options);
     app.addRoutes = addRoutes.bind(app);
     app.init = init.bind(app);
+    setOptions(app, options);
 }
 
 populateLoaders(Router);

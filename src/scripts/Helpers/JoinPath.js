@@ -2,16 +2,15 @@ const pathSlashRegex = new RegExp("(?<!:|:/)/", "g"); // Matches all forward sla
 
 export default function joinPath() {
     if (arguments.length === 0) { throw "Must pass arguments to joinPath"; }
-    for (const argument in arguments) {
+    for (const argument of arguments) {
         if (typeof argument !== "string") { throw "Arguments must be strings" }; 
     }
-    const argumentArray = [...arguments];
     const startsWithSlash = arguments[0].startsWith("/");
     return (startsWithSlash ? "/" : "")
-        + argumentArray
-        .join("/")
-        .split(pathSlashRegex)
-        .filter(el => el)
-        .join("/")
-        .toLowerCase();
+        + [...arguments]
+            .join("/")
+            .split(pathSlashRegex)
+            .filter(el => el)
+            .join("/")
+            .toLowerCase();
 }

@@ -1,5 +1,6 @@
 import onLoadedGlobalEvent from "./Events/OnLoadedGlobalEvent.js";
 import onLoadedEvent from "./Events/OnLoadedEvent.js";
+import catchLoaderError from "./ErrorHandlers/CatchLoaderError.js";
 import coalesce from "./Helpers/Coalesce.js";
 import groupByChange from "./Helpers/GroupByChange.js";
 
@@ -10,17 +11,7 @@ export default async function load(app, route) {
             : null;
     if (!loaders || !loaders.length) { return Promise.resolve(); }
 
-    try {
-        await loadGroups(app, route, loaders);
-    }
-    catch (e) {
-        const onLoadError = coalesce(route.onLoadError, app.onLoadError);
-        if (!Array.isArray(onLoadError)) { throw "Unable to load; onLoadError must be array"; }
-        for (const doOnLoadError of onLoadError) {
-            doOnLoadError(e, app, route);
-        }
-        return Promise.reject();
-    }
+    await loadGroups(app, route, loaders);
 
     onLoadedGlobalEvent(app, route);
     onLoadedEvent(app, route);
@@ -47,12 +38,17 @@ function loadBlocking(loaders, app, route) {
     if (!loaders || !loaders.length) { return Promise.resolve(); }
     let chainedPromise = Promise.resolve();
     for (const loader of loaders) {
-        chainedPromise = chainedPromise.then(() => loader(app, route));
+        chainedPromise = chainedPromise.then(() => loadSingle(loader, app, route));
     }
     return chainedPromise;
 }
 
 function loadParallel(loaders, app, route) {
-    const loadPromises = loaders.map(loader => loader(app, route));
+    const loadPromises = loaders.map(loader => loadSingle(loader, app, route));
     return Promise.all(loadPromises);
+}
+
+function loadSingle(loader, app, route) {
+    return loader(app, route)
+        .catch(e => catchLoaderError(e, app, route, loader));
 }

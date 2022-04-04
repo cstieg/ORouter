@@ -4,12 +4,15 @@ import defaultOnLoadError from "./ErrorHandlers/DefaultOnLoadError.js";
 import defaultOnRenderError from "./ErrorHandlers/DefaultOnRenderError.js";
 
 export function setOptions(app, options) {
+    app.routes = {};
+    if (options.routes) {
+        app.addRoutes(options.routes, {});
+        delete options.routes;
+    }
+
     Object.assign(app, options);
 
     setDefault(app, "baseUrl", globalThis.location.origin);
-
-    // TODO: Allow setting routes on constructor
-    setDefault(app, "routes", {});
 
     setDefault(app, "loader", [app.constructor.loaders?.htmlLoader]);
     setDefault(app, "scriptLoader", app.constructor.loaders?.scriptLoader);
@@ -45,6 +48,7 @@ export function setOptionsForRoutes(routes, options) {
 
     for (const route of routes) {
         coalesceRecursive(route, options);
+        route.namespace = route.namespace ?? "";
     }
 }
 

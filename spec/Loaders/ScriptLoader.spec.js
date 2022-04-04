@@ -17,7 +17,8 @@ function getApp() {
         },
         fileExtension: {
             script: ".js"
-        }
+        },
+        onLoadError: [function () { }]
     };
 }
 

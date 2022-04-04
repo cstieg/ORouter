@@ -5,7 +5,10 @@ templateLoader.IsBlocking = false;
 
 export default function templateLoader(app, route) {
     return new Promise((resolve, reject) => {
-        if (route.loadedTemplate !== undefined) { resolve(); }
+        if (route.loadedTemplate !== undefined) {
+            resolve();
+            return;
+        }
 
         const templateName = getFileName(app, route, "template");
         if (!templateName) {
@@ -23,7 +26,7 @@ export default function templateLoader(app, route) {
                 }
                 else {
                     route.loadedTemplate = null;
-                    reject();
+                    reject(`Template ${url} not found`);
                 }
             });
     });

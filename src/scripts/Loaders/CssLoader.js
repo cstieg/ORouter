@@ -5,7 +5,10 @@ cssLoader.IsBlocking = false;
 
 export default function cssLoader(app, route) {
     return new Promise((resolve, reject) => {
-        if (route.loadedCss !== undefined) { resolve(); }
+        if (route.loadedCss !== undefined) {
+            resolve();
+            return;
+        }
 
         const cssName = getFileName(app, route, "css");
         if (!cssName) {
@@ -22,9 +25,14 @@ export default function cssLoader(app, route) {
                     resolve();
                 }
                 else {
-                    route.loadedCss = null;
-                    reject(`${url} not found`);
+                    fail();
                 }
-            });
+            }).catch(fail);
+
+
+        function fail() {
+            route.loadedCss = null;
+            reject(`Script ${url} not found`);
+        }
     });
 }

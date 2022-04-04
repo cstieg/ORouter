@@ -5,7 +5,10 @@ htmlLoader.IsBlocking = false;
 
 export default function htmlLoader(app, route) {
     return new Promise((resolve, reject) => {
-        if (route.loadedHtml !== undefined) { resolve(); }
+        if (route.loadedHtml !== undefined) {
+            resolve();
+            return;
+        }
 
         const htmlName = getFileName(app, route, "html");
         if (!htmlName) {
@@ -23,7 +26,7 @@ export default function htmlLoader(app, route) {
                 }
                 else {
                     route.loadedHtml = null;
-                    reject();
+                    reject(`Html ${url} not found`);
                 }
             });
     });

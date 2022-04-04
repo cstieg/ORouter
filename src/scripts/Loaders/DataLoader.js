@@ -5,7 +5,10 @@ dataLoader.IsBlocking = false;
 
 export default function dataLoader(app, route) {
     return new Promise((resolve, reject) => {
-        if (route.loadedData !== undefined) { resolve(); }
+        if (route.loadedData !== undefined) {
+            resolve();
+            return;
+        }
 
         const dataName = getFileName(app, route, "data");
         if (!dataName) {
@@ -25,7 +28,8 @@ export default function dataLoader(app, route) {
                 resolve();
             }
             else {
-                reject();
+                route.loadedData = null;
+                reject(`Data ${url} not found`);
             }
         });
     });

@@ -2,19 +2,19 @@ import load from "../src/scripts/Load.js";
 
 describe("load", () => {
     it("calls the loader for the app", async () => {
-        const loader = function (app, route) { };
+        const loader = function (app, route) { return Promise.resolve(); };
         const app = {
             loader: loader
         };
         const route = {};
 
-        spyOn(app, "loader");
+        spyOn(app, "loader").and.callThrough();
         await load(app, route);
         expect(app.loader).toHaveBeenCalledWith(app, route);
     });
 
     it("calls the loader for the route", async () => {
-        const loader = function (app, route) { };
+        const loader = function (app, route) { return Promise.resolve(); };
         const app = {
             loader: (app, route) => { }
         };
@@ -22,15 +22,15 @@ describe("load", () => {
             loader: loader
         };
 
-        spyOn(route, "loader");
+        spyOn(route, "loader").and.callThrough();
         await load(app, route);
         expect(route.loader).toHaveBeenCalledWith(app, route);
     });
 
     it("calls multiple loaders", async () => {
         const loaders = {
-            loader1: function (app, route) { },
-            loader2: function (app, route) { }
+            loader1: function (app, route) { return Promise.resolve(); },
+            loader2: function (app, route) { return Promise.resolve(); }
         };
 
         const app = {
@@ -41,8 +41,8 @@ describe("load", () => {
         };
         const route = {};
 
-        spyOn(loaders, "loader1");
-        spyOn(loaders, "loader2");
+        spyOn(loaders, "loader1").and.callThrough();
+        spyOn(loaders, "loader2").and.callThrough();
 
         await load(app, route);
         expect(loaders.loader1).toHaveBeenCalledWith(app, route);
@@ -76,9 +76,7 @@ describe("load", () => {
 
         const app = {
             loader: [loaders.loader1, loaders.loader2],
-            onLoadError: [function (err) {
-                console.log(err);
-            }]
+            onLoadError: [function (err) { }]
         };
         const route = {};
 
