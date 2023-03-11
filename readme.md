@@ -152,7 +152,7 @@ router.root = "app";
   * `loadedHtml`
     * Type: string
     * Description: The HTML content loaded by `htmlLoader` and rendered by `htmlRenderer`.
-  * `loadedTempate`
+  * `loadedTemplate`
     * Type: string
     * Description: The template loaded by `templateLoader`.
   * `importedScript`
@@ -166,3 +166,16 @@ router.root = "app";
     * Type: function | function[]
     * Description: Renderer or array of renderers that render html, template, data, etc. Loader should return Promise.
     * Overrides app option
+* Special options
+  * Load specifications may be set to null, false, or empty string to suppress loading the default filename for the loader.
+  * If globally suppressed in options, the default may be restored on a route by specifying the value as true.
+  * Example:  
+ ```
+// app.js
+...
+router.addRoutes([
+    { name: "bar", loadedHtml: "<h1>Hello for bar</h1><a href='foo/baz'>Baz</a>", defaultParameters: "a=1&b=2", script: false },
+    { name: "baz", loadedHtml: "<h1>Hello for baz</h1><a href='foo/bar'>Bar</a>", css: true },
+], { namespace: "foo", css: false });
+...
+```

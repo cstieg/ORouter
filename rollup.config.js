@@ -13,7 +13,8 @@ export default {
         },
         {
             file: 'test/Router.js',
-            name: 'Router'
+            name: 'Router',
+            format: 'module',
         }
     ]
 };
