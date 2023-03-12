@@ -1,6 +1,6 @@
-import { Router } from "./Router.js";
+import { ORouter } from "./ORouter.js";
 
-const router = new Router({
+const router = new ORouter({
     root: "app",
     routes: [
         { name: "bar", loadedHtml:"<h1>Root Bar</h1>" }
@@ -8,8 +8,8 @@ const router = new Router({
     onLoadError: [logErrors]
 });
 
-router.loader.push(Router.loaders.cssLoader);
-router.renderer.push(Router.renderers.cssRenderer);
+router.loader.push(ORouter.loaders.cssLoader);
+router.renderer.push(ORouter.renderers.cssRenderer);
 
 router.addRoutes([
     { name: "bar", defaultParameters: "a=1&b=2", css: true},

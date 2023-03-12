@@ -5,8 +5,8 @@ import templateLoader from "./TemplateLoader.js";
 
 import scriptLoader from "./ScriptLoader.js";
 
-export default function populateLoaders(Router) {
-    Router.loaders = {
+export default function populateLoaders(ORouter) {
+    ORouter.loaders = {
         cssLoader,
         dataLoader,
         htmlLoader,

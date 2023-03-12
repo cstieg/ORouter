@@ -2,7 +2,7 @@
   "name": "occams-router",
   "version": "1.0.0",
   "description": "Simple SPA routing",
-  "main": "build/Router.js",
+  "main": "build/ORouter.js",
   "author": "Christopher Stieg <cbstieg@gmail.com>",
   "devDependencies": {
     "jasmine": "^4.0.2",

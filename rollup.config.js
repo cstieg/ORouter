@@ -4,16 +4,16 @@ export default {
     input: 'src/scripts/main.js',
     output: [
         {
-            file: 'build/js/Router.min.js',
-            name: 'Router',
+            file: 'build/js/ORouter.min.js',
+            name: 'ORouter',
             format: 'iife',
             plugins: [
                 uglify()
             ]
         },
         {
-            file: 'test/Router.js',
-            name: 'Router',
+            file: 'test/ORouter.js',
+            name: 'ORouter',
             format: 'module',
         }
     ]

@@ -9,12 +9,12 @@ import populateLoaders from './Loaders/PopulateLoaders.js';
  * @constructor
  * @param {object} [options]  Options object
  */
-export function Router(options) {
+export function ORouter(options) {
     const app = this;
     app.addRoutes = addRoutes.bind(app);
     app.init = init.bind(app);
     setOptions(app, options);
 }
 
-populateLoaders(Router);
-populateRenderers(Router);
+populateLoaders(ORouter);
+populateRenderers(ORouter);

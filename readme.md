@@ -35,7 +35,8 @@ A `static/` folder should also be set up to serve static content.
 
 ```
 // app.js
-const router = new HashRouter({
+import { ORouter } from "./ORouter.js";
+const router = new ORouter({
     root: "app"
 });
 router.addRoutes([
@@ -47,15 +48,15 @@ router.init();
 
 ## Syntax
 
-### Router
+### ORouter
 * **Constructor** 
-`new HashRouter(options)`
+`new ORouter(options)`
 
 Properties can be passed in through the options object
 ```
-var router = new HashRouter({ root: "app" });
+var router = new ORouter({ root: "app" });
 ```
-or set on the HashRouter object.
+or set on the ORouter object.
 ```
 router.root = "app";
 ```
@@ -118,7 +119,7 @@ router.root = "app";
       * `routes` - an array of Route objects to add
       * `options` - an Options object to apply to the set of routes.  Can specify a `namespace`.
   * `init`
-    * Description: Enables the Router.
+    * Description: Enables the ORouter.
 
 
 ### Route
