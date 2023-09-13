@@ -17,8 +17,8 @@ export default function getUrl(app, route, fileType, fileName) {
 function replaceVariables(appPath, namespace, fileName) {
     return appPath
         .toLowerCase()
-        .replace("*namespace*", namespace)
-        .replace("*name*", fileName);
+        .replaceAll("*namespace*", namespace)
+        .replaceAll("*name*", fileName);
 }
 
 function getAppPath(app, fileType) {
