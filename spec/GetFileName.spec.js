@@ -15,7 +15,7 @@ describe("getFileName", () => {
         };
 
         const fileName = getFileName(app, route, "html");
-        expect(fileName).toBe("foo.html");
+        expect(fileName).toBe("foo");
     });
 
     it("constructs a file name from app properties", () => {
@@ -29,6 +29,6 @@ describe("getFileName", () => {
         };
 
         const fileName = getFileName(app, route, "html");
-        expect(fileName).toBe("foo.html");
+        expect(fileName).toBe("foo");
     });
 });

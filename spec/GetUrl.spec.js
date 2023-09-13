@@ -21,6 +21,9 @@ describe("getUrl", () => {
         const app = {
             path: {
                 html: "https://www.example.com/index.html"
+            },
+            fileExtension: {
+                html: ".html"
             }
         };
         const route = {};
@@ -33,6 +36,9 @@ describe("getUrl", () => {
         const app = {
             path: {
                 html: "/static/*namespace*/*name*"
+            },
+            fileExtension: {
+                html: ".html"
             }
         };
         const route = {
