@@ -1,4 +1,4 @@
-import { uglify } from 'rollup-plugin-uglify';
+import { terser } from "rollup-plugin-terser";
 
 export default {
     input: 'src/scripts/main.js',
@@ -8,7 +8,7 @@ export default {
             name: 'ORouter',
             format: 'iife',
             plugins: [
-                uglify()
+                terser()
             ]
         },
         {
