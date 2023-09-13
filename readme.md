@@ -69,6 +69,9 @@ router.root = "app";
   * `routes`
     * Type: object[]
     * Description: Array of routes
+  * `namespace`
+    * Type: string
+    * Description: Prefix to be added to all routes
   * `path`
     * Type: object
     * Description: Default path for different types of resources

@@ -1,4 +1,5 @@
 import joinPath from "./Helpers/JoinPath.js";
+import appendFileExtension from "./AppendFileExtension.js";
 
 export default function getUrl(app, route, fileType, fileName) {
     if (!fileName) { return null; }
@@ -11,14 +12,15 @@ export default function getUrl(app, route, fileType, fileName) {
     const appPath = getAppPath(app, fileType);
 
     const replacedAppPath = replaceVariables(appPath, route.namespace, fileName);
-    return joinPath(replacedAppPath);
+    const joinedPath = joinPath(replacedAppPath);
+    return appendFileExtension(app, route, fileType, joinedPath);
 }
 
 function replaceVariables(appPath, namespace, fileName) {
     return appPath
         .toLowerCase()
-        .replace("*namespace*", namespace)
-        .replace("*name*", fileName);
+        .replaceAll("*namespace*", namespace)
+        .replaceAll("*name*", fileName);
 }
 
 function getAppPath(app, fileType) {
