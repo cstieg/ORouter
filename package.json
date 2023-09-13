@@ -8,9 +8,8 @@
     "jasmine": "^4.0.2",
     "jasmine-core": "^4.0.1",
     "rollup": "^2.50.4",
-    "rollup-plugin-uglify": "^6.0.4"
+    "rollup-plugin-terser": "^7.0.2"
   },
-  "dependencies": {},
   "scripts": {
     "dev": "jasmine && rollup -c",
     "test": "jasmine"
