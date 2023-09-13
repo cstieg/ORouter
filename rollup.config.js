@@ -9,7 +9,8 @@ export default {
             format: 'iife',
             plugins: [
                 terser()
-            ]
+            ],
+            sourcemap: true
         },
         {
             file: 'test/ORouter.js',
