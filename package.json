@@ -5,9 +5,9 @@
   "main": "build/ORouter.js",
   "author": "Christopher Stieg <cbstieg@gmail.com>",
   "devDependencies": {
-    "jasmine": "^4.0.2",
-    "jasmine-core": "^4.0.1",
-    "rollup": "^2.50.4",
+    "jasmine": "^5.1.0",
+    "jasmine-core": "^5.1.1",
+    "rollup": "^3.29.1",
     "rollup-plugin-terser": "^7.0.2"
   },
   "scripts": {
