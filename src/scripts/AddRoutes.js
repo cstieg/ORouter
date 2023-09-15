@@ -9,7 +9,8 @@ export default function addRoutes(routes, options) {
     for (const route of routes) {
         if (!route.name) { throw "Must define route name"; }
 
-        const namespacedRouteName = "/" + joinPath(app.namespace, route.namespace, route.name);
+        const appNameSpace = route.name.startsWith("/") ? "" : app.namespace;
+        const namespacedRouteName = joinPath("/", appNameSpace, route.namespace, route.name);
         const existingRoute = routes[namespacedRouteName];
         if (existingRoute) { throw "Route must be unique: " + namespacedRouteName; }
 

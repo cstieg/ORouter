@@ -10,6 +10,7 @@ export default function getUrl(app, route, fileType, fileName) {
     }
 
     const appPath = getAppPath(app, fileType);
+    if (!appPath) { throw `Path for ${fileType} is not specified`; }
 
     const replacedAppPath = replaceVariables(appPath, route.namespace, fileName);
     const joinedPath = joinPath(replacedAppPath);
