@@ -1,8 +1,9 @@
-import { setOptions } from './Options.js';
 import addRoutes from './AddRoutes.js';
+import getUrl from './GetUrl.js';
 import { init } from './Navigation.js';
-import populateRenderers from './Renderers/PopulateRenderers.js';
 import populateLoaders from './Loaders/PopulateLoaders.js';
+import populateRenderers from './Renderers/PopulateRenderers.js';
+import { setOptions } from './Options.js';
 
 /**
  * Router constructor
@@ -13,6 +14,7 @@ export function ORouter(options) {
     const app = this;
     app.addRoutes = addRoutes.bind(app);
     app.init = init.bind(app);
+    app.getUrl = getUrl.bind(app);
     setOptions(app, options);
 }
 
